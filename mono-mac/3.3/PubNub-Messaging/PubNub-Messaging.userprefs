@@ -3,11 +3,19 @@
   <MonoDevelop.Ide.Workbench ActiveDocument="PubNub-Messaging/MainWindow.cs">
     <Files>
       <File FileName="PubNub-Messaging/Main.cs" Line="1" Column="1" />
-      <File FileName="PubNub-Messaging/MainWindow.cs" Line="10" Column="59" />
+      <File FileName="PubNub-Messaging/MainWindow.cs" Line="47" Column="32" />
+      <File FileName="PubNub-Messaging/Pubnub.cs" Line="1304" Column="1" />
+      <File FileName="PubNub-Messaging/Pubnub_Example.cs" Line="276" Column="46" />
+      <File FileName="PubNub-Messaging/MainWindowController.cs" Line="43" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
+    <BreakpointStore>
+      <Breakpoint file="/Volumes/Macintosh/Users/rajatkalsy/Projects/Client/ODesk/pubnub/git/pubnub-api/mono-mac/3.3/PubNub-Messaging/PubNub-Messaging/Pubnub_Example.cs" line="277" />
+      <Breakpoint file="/Volumes/Macintosh/Users/rajatkalsy/Projects/Client/ODesk/pubnub/git/pubnub-api/mono-mac/3.3/PubNub-Messaging/PubNub-Messaging/Pubnub_Example.cs" line="288" />
+    </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches>
+    <Watch file="PubNub-Messaging/Pubnub.cs" line="549" offsetX="648" offsetY="6960" expression="result" liveUpdate="False" />
+  </MonoDevelop.Ide.DebuggingService.PinnedWatches>
 </Properties>

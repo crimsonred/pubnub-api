@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ComponentModel;
+//added ra
+using System.Security.Cryptography;
+using System.IO;
+using fastJSON;
 
 namespace PubNubMessaging
 {
@@ -16,7 +20,8 @@ namespace PubNubMessaging
                     "",
                     false);
         static public string channel = "hello_world";
-        static public string message = "Pubnub API Usage Example - Publish";
+        //static public string message = "Pubnub API Usage Example - Publish";
+		static public string message = "Pubnub API Usage Example - Publish";
 
         /*static public void Main()
         {
@@ -67,7 +72,7 @@ namespace PubNubMessaging
             Console.ReadLine();
 
         }*/
-        static void TestUnencryptedHistory()
+        public static void TestUnencryptedHistory()
         {
             pubnub.CIPHER_KEY = "";
             pubnub.PropertyChanged += delegate(object sender, PropertyChangedEventArgs e)
@@ -91,7 +96,7 @@ namespace PubNubMessaging
             pubnub.history(channel, 1);
         }
 
-        static void TestEncryptedHistory()
+        public static void TestEncryptedHistory()
         {
             pubnub.CIPHER_KEY = "enigma";
             pubnub.PropertyChanged += delegate(object sender, PropertyChangedEventArgs e)
@@ -149,7 +154,8 @@ namespace PubNubMessaging
                 if (e.PropertyName == "DetailedHistory")
                 {
                     Console.WriteLine("\n*********** DetailedHistory Messages *********** ");
-                    foreach (object msg_org in (object[])((Pubnub)sender).DetailedHistory)
+					//modified object[] to List<object>
+                    foreach (object msg_org in (List<object>)((Pubnub)sender).DetailedHistory)
                     {
                         Console.WriteLine(msg_org.ToString());
                     }
@@ -161,7 +167,7 @@ namespace PubNubMessaging
             Console.WriteLine("\n******* DetailedHistory Messages Received ******* ");
         }
 
-        static void TestEncryptedDetailedHistory()
+        public static void TestEncryptedDetailedHistory()
         {
             // Context setup for Detailed History
             pubnub.CIPHER_KEY = "enigma";
@@ -241,7 +247,8 @@ namespace PubNubMessaging
                 if (e.PropertyName == "DetailedHistory")
                 {
                     Console.WriteLine("\n*********** DetailedHistory Messages *********** ");
-                    foreach (object msg_org in (object[])((Pubnub)sender).DetailedHistory)
+					//modified object[] to List<object>
+                    foreach (object msg_org in (List<object>)((Pubnub)sender).DetailedHistory)
                     {
                         Console.WriteLine(msg_org.ToString());
                     }
@@ -262,12 +269,22 @@ namespace PubNubMessaging
             Console.WriteLine("\n******* DetailedHistory Messages Received ******* ");
         }
 
+
         public static void TestEncryptedDetailedHistoryParams()
         {
-            // Context setup for Detailed History
+		    Subscribe_Example();
+   		    // Context setup for Detailed Histor
             pubnub.CIPHER_KEY = "enigma";
             int total_msg = 10;
             long starttime = Timestamp();
+			PubnubCrypto pc = new PubnubCrypto("enigma");
+
+			string enc = pc.EncryptOrDecrypt(true, "yay!");
+			Console.WriteLine (enc);
+			//q/xJqqN6qbiZMXYmiQC1Fw==
+			Console.WriteLine (pc.EncryptOrDecrypt(false, enc));
+
+
             Dictionary<long, string> inputs = new Dictionary<long, string>();
             for (int i = 0; i < total_msg / 2; i++)
             {
@@ -287,6 +304,7 @@ namespace PubNubMessaging
                 inputs.Add(t, msg);
                 Console.WriteLine("Message # " + i.ToString() + " published");
             }
+
 
             long endtime = Timestamp();
 
@@ -317,7 +335,7 @@ namespace PubNubMessaging
             Console.WriteLine("\n******* DetailedHistory Messages Received ******* ");
         }
 
-        static long Timestamp()
+        public static long Timestamp()
         {
             deliveryStatus = false;
             pubnub.PropertyChanged += delegate(object sender, PropertyChangedEventArgs e)
@@ -325,13 +343,15 @@ namespace PubNubMessaging
                 if (e.PropertyName == "Time")
                 {
                     deliveryStatus = true;
+					//added Roger
+					Console.WriteLine("Timestamp delivered");
                 }
             };
             pubnub.time();
             while (!deliveryStatus) ;
             return Convert.ToInt64(pubnub.Time[0].ToString());
         }
-        static void Publish_Example()
+        public static void Publish_Example()
         {
             pubnub.CIPHER_KEY = "";
             pubnub.PropertyChanged += delegate(object sender, PropertyChangedEventArgs e)
@@ -348,7 +368,7 @@ namespace PubNubMessaging
             pubnub.publish(channel, message);
         }
         
-        static void DetailedHistory_Example()
+        public static void DetailedHistory_Example()
         {
             pubnub.CIPHER_KEY = "";
             //int start = 
@@ -366,7 +386,7 @@ namespace PubNubMessaging
             Console.WriteLine("\n*********** DetailedHistory Messages Received*********** ");
         }
 
-        static void DetailedHistory_Decrypted_Example()
+        public static void DetailedHistory_Decrypted_Example()
         {
             pubnub.CIPHER_KEY = "enigma";
             //int start = 
@@ -397,7 +417,7 @@ namespace PubNubMessaging
             };
             pubnub.time();
         }
-        static void Subscribe_Example()
+        public static void Subscribe_Example()
         {
             pubnub.CIPHER_KEY = "";
             pubnub.PropertyChanged += delegate(object sender, PropertyChangedEventArgs e)
@@ -406,12 +426,18 @@ namespace PubNubMessaging
                 {
                     Console.WriteLine("\n********** Subscribe Messages ********** ");
                     MessageFeeder(((Pubnub)sender).ReturnMessage);
-                }
+       			}
+				//added Roger
+				else if (e.PropertyName == "Subscribe")
+				{
+					Console.WriteLine("\n********** Subscribe Messages ********** ");
+                    MessageFeeder(((Pubnub)sender).Subscribe);
+				}
             };
             pubnub.subscribe(channel);
         }
 
-        static void Presence_Example()
+        public static void Presence_Example()
         {
             pubnub.CIPHER_KEY = "";
             pubnub.PropertyChanged += delegate(object sender, PropertyChangedEventArgs e)
@@ -421,11 +447,17 @@ namespace PubNubMessaging
                     Console.WriteLine("\n********** Presence Messages ********** ");
                     MessageFeeder(((Pubnub)sender).ReturnMessage);
                 }
+				//added Roger
+				else if (e.PropertyName == "Presence")
+				{
+					Console.WriteLine("\n********** Presence Messages ********** ");
+                    MessageFeeder(((Pubnub)sender).Presence);
+				}
             };
             pubnub.presence(channel);
         }
 
-        static void HereNow_Example()
+        public static void HereNow_Example()
         {
             pubnub.CIPHER_KEY = "";
             pubnub.PropertyChanged += delegate(object sender, PropertyChangedEventArgs e)
