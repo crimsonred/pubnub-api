@@ -519,22 +519,22 @@ namespace PubNubMessaging
                                     {
                                         List<object> historyDecrypted = new List<object>();
                                         PubnubCrypto aes = new PubnubCrypto(this.CIPHER_KEY);
-								        //object[] myObjectArray= result.se.ToArray();
-									    var myObjectArray = (from item in result select item as object).ToArray();
-									    IEnumerable enumerable = myObjectArray[0] as IEnumerable;
-									    if (enumerable != null)
-									    {
-								            foreach(object element in enumerable)
-								            {
-								                historyDecrypted.Add(aes.decrypt(element.ToString()));
-							                }
-									    }
-										/*object [] myObjectArray2 = (from item in myObjectArray[0] select item as object).ToArray();
-										for(int i =0; i < myObjectArray2.Count(); i++)
-										{
-											historyDecrypted.Add(aes.decrypt(myObjectArray2[i].ToString()));
-										}
-										/*foreach (object message in myObjectArray[0])
+                                        //object[] myObjectArray= result.se.ToArray();
+                                        var myObjectArray = (from item in result select item as object).ToArray();
+                                        IEnumerable enumerable = myObjectArray[0] as IEnumerable;
+                                        if (enumerable != null)
+                                        {
+                                            foreach(object element in enumerable)
+                                            {
+                                                historyDecrypted.Add(aes.decrypt(element.ToString()));
+                                            }
+                                        }
+                                        /*object [] myObjectArray2 = (from item in myObjectArray[0] select item as object).ToArray();
+                                        for(int i =0; i < myObjectArray2.Count(); i++)
+                                        {
+                                            historyDecrypted.Add(aes.decrypt(myObjectArray2[i].ToString()));
+                                        }
+                                        /*foreach (object message in myObjectArray[0])
                                         {
                                             historyDecrypted.Add(aes.decrypt(message.ToString()));
                                         }*/
@@ -547,18 +547,18 @@ namespace PubNubMessaging
                                     else
                                     {
                                         //DetailedHistory = (object[])(result[0]);
-								        //added Roger
-								        List<object> historyDecrypted = new List<object>();
-										var myObjectArray = (from item in result select item as object).ToArray();
-									    IEnumerable enumerable = myObjectArray[0] as IEnumerable;
-									    if (enumerable != null)
-									    {
-								            foreach(object element in enumerable)
-								            {
-								                historyDecrypted.Add(element.ToString());
-							                }
-									    }
-								        DetailedHistory = historyDecrypted;
+                                        //added Roger
+                                        List<object> historyDecrypted = new List<object>();
+                                        var myObjectArray = (from item in result select item as object).ToArray();
+                                        IEnumerable enumerable = myObjectArray[0] as IEnumerable;
+                                        if (enumerable != null)
+                                        {
+                                            foreach(object element in enumerable)
+                                            {
+                                                historyDecrypted.Add(element.ToString());
+                                            }
+                                        }
+                                        DetailedHistory = historyDecrypted;
                                     }
                                     break;
                                 case ResponseType.Here_Now:
@@ -598,10 +598,10 @@ namespace PubNubMessaging
         // Serialize the given object into JSON string
         public static string SerializeToJsonString (object objectToSerialize)
 		{
-		    //added Roger
-		    return fastJSON.JSON.Instance.ToJSON(objectToSerialize);
-			/*using (MemoryStream ms = new MemoryStream()) {
-				System.Runtime.Serialization.Json.DataContractJsonSerializer serializer = new  System.Runtime.Serialization.Json.DataContractJsonSerializer(objectToSerialize.GetType());
+            //added Roger
+            return fastJSON.JSON.Instance.ToJSON(objectToSerialize);
+            /*using (MemoryStream ms = new MemoryStream()) {
+                System.Runtime.Serialization.Json.DataContractJsonSerializer serializer = new  System.Runtime.Serialization.Json.DataContractJsonSerializer(objectToSerialize.GetType());
                 serializer.WriteObject(ms, objectToSerialize);
                 ms.Position = 0;
 
@@ -614,13 +614,13 @@ namespace PubNubMessaging
 
         // Deserialize JSON string into List of Objects
         public static List<object> DeserializeToListOfObject (string jsonString)
-		{
-		    //added Roger
-		    List<object> listObj = fastJSON.JSON.Instance.Parse(jsonString) as List<object>;
-		    return listObj;
-			/*using (MemoryStream ms = new MemoryStream(Encoding.Unicode.GetBytes(jsonString))) {
-				//fastJSON.Deserialize(jsonString);
-				System.Runtime.Serialization.Json.DataContractJsonSerializer serializer = new  System.Runtime.Serialization.Json.DataContractJsonSerializer(typeof(List<object>));
+        {
+            //added Roger
+            List<object> listObj = fastJSON.JSON.Instance.Parse(jsonString) as List<object>;
+            return listObj;
+            /*using (MemoryStream ms = new MemoryStream(Encoding.Unicode.GetBytes(jsonString))) {
+                //fastJSON.Deserialize(jsonString);
+                System.Runtime.Serialization.Json.DataContractJsonSerializer serializer = new  System.Runtime.Serialization.Json.DataContractJsonSerializer(typeof(List<object>));
                 
                 return (List<object>)serializer.ReadObject(ms);
             }*/
@@ -1237,9 +1237,8 @@ namespace PubNubMessaging
             this.CIPHER_KEY = cipher_key;
         }
 
-
-		//added ra
-		public string GetSHA256(string text)
+        //added ra
+        /*public string GetSHA256(string text)
         {
             UnicodeEncoding UE = new UnicodeEncoding();
             byte[] hashValue;
@@ -1254,8 +1253,38 @@ namespace PubNubMessaging
                 hex += String.Format("{0:x2}", x);
             }
             return hex;
+        }*/
+
+        public static string ComputeHash(string input, HashAlgorithm algorithm)
+        {
+           Byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(input);
+           Byte[] hashedBytes = algorithm.ComputeHash(inputBytes);
+           return BitConverter.ToString(hashedBytes);
         }
 
+        /// <summary>
+        /// The method to Decode your Base64 strings.
+        /// </summary>
+        /// <param name="encodedData">The String containing the characters to decode.</param>
+        /// <returns>A String containing the results of decoding the specified sequence of bytes.</returns>
+        public static string DecodeFrom64(string encodedData)
+        {
+            byte[] encodedDataAsBytes      = System.Convert.FromBase64String(encodedData);
+            string returnValue =      System.Text.Encoding.ASCII.GetString(encodedDataAsBytes);
+            return returnValue;
+        }
+
+        /// <summary>
+        /// The method create a Base64 encoded string from a normal string.
+        /// </summary>
+        /// <param name="toEncode">The String containing the characters to encode.</param>
+        /// <returns>The Base64 encoded string.</returns>
+        public static string EncodeTo64(string toEncode)
+        {
+            byte[] toEncodeAsBytes          = System.Text.Encoding.ASCII.GetBytes(toEncode);
+            string returnValue          = System.Convert.ToBase64String(toEncodeAsBytes);
+            return returnValue;
+        }
         /**
          * EncryptOrDecrypt
          * 
@@ -1266,53 +1295,67 @@ namespace PubNubMessaging
         public string EncryptOrDecrypt(bool type, string plainStr)
         {
             /*MemoryStream ms = new MemoryStream(); 
-			Rijndael alg = Rijndael.Create(); 
-			alg.Mode = CipherMode.CBC;
-			//alg.KeySize = 32;
-			//alg.Key = GetSHA256("0123456789012345");
-			alg.IV = ASCIIEncoding.UTF8.GetBytes("0123456789012345");; */
+            Rijndael alg = Rijndael.Create(); 
+            alg.Mode = CipherMode.CBC;
+            //alg.Key = GetSHA256("0123456789012345");
+            alg.IV = ASCIIEncoding.UTF8.GetBytes("0123456789012345");; */
             RijndaelManaged aesEncryption = new RijndaelManaged();
             aesEncryption.KeySize = 256;
             aesEncryption.BlockSize = 128;
             aesEncryption.Mode = CipherMode.CBC;
             aesEncryption.Padding = PaddingMode.PKCS7;
-            aesEncryption.IV = ASCIIEncoding.UTF8.GetBytes("0123456789012345");
-            aesEncryption.Key = md5(this.CIPHER_KEY);
+            aesEncryption.IV = System.Text.Encoding.ASCII.GetBytes("0123456789012345");
+            //Console.WriteLine(GetSHA256(this.CIPHER_KEY));
+            
+			string strKeySHA256HashRaw = ComputeHash(this.CIPHER_KEY, new SHA256CryptoServiceProvider());
+            string strKeySHA256Hash = (strKeySHA256HashRaw.Replace("-","")).Substring(0, 32);
+            //create cipher
+            //Console.WriteLine(strKeySHA256Hash);
+
+            //aesEncryption.Key = md5(this.CIPHER_KEY);
+			aesEncryption.Key = System.Text.Encoding.ASCII.GetBytes(strKeySHA256Hash.ToLower());
+
             if (type)
             {
                 ICryptoTransform crypto = aesEncryption.CreateEncryptor();
-			    //serialize
-			    string strJsonEnc = fastJSON.JSON.Instance.ToJSON(plainStr);
-                //byte[] plainText = ASCIIEncoding.UTF8.GetBytes(plainStr);
-			    byte[] plainText = ASCIIEncoding.UTF8.GetBytes(strJsonEnc);
-			    //encrypt
+                //serialize
+                //string strJsonEnc = fastJSON.JSON.Instance.ToJSON(plainStr);
+                byte[] plainText = ASCIIEncoding.ASCII.GetBytes(plainStr);
+                //byte[] plainText = System.Text.Encoding.ASCII.GetBytes(strJsonEnc);
+                //encrypt
                 byte[] cipherText = crypto.TransformFinalBlock(plainText, 0, plainText.Length);
-			    //serialize again
-		        //string strEncrypted = fastJSON.JSON.Instance.ToJSON(ASCIIEncoding.UTF8.GetString(cipherText));
-			    //byte[] encryptedBytes = ASCIIEncoding.ASCII.GetBytes(strEncrypted);
-		        //Console.WriteLine("encoded and eny" + strEncrypted);
-			    //Convert to bytes
-			    //byte[] encryptedBytes = ASCIIEncoding.UTF8.GetBytes(strEncrypted);
-		        //encode
-			    //return Convert.ToBase64String(encryptedBytes);
+                //serialize again
+                string strEncrypted = fastJSON.JSON.Instance.ToJSON(ASCIIEncoding.UTF8.GetString(cipherText));
+				//Console.WriteLine("encoded and eny" + strEncrypted);
+                //byte[] encryptedBytes = ASCIIEncoding.ASCII.GetBytes(strEncrypted);
+                //Console.WriteLine("encoded and eny" + strEncrypted);
+                //Convert to bytes
+                //byte[] encryptedBytes = ASCIIEncoding.UTF8.GetBytes(strEncrypted);
+                //encode
+                //return Convert.ToBase64String(encryptedBytes);
+				JavaScriptSerializer ser = new JavaScriptSerializer();
+				Console.WriteLine(ser.Serialize(strEncrypted));
                 return Convert.ToBase64String(cipherText);
+                //return EncodeTo64(System.Text.Encoding.ASCII.GetString(cipherText));
             }
             else
             {
                 ICryptoTransform decrypto = aesEncryption.CreateDecryptor();
-			    //decode
+                //decode
                 byte[] decryptedBytes = Convert.FromBase64CharArray(plainStr.ToCharArray(), 0, plainStr.Length);
-			    //deserialize
-			    //string strDeserialized = (string)fastJSON.JSON.Instance.Parse(ASCIIEncoding.ASCII.GetString(encryptedBytes));
-			    //Console.WriteLine("Dencoded and deeny" + strDeserialized);
-			    //Convert to bytes
-			    //byte[] deserializedBytes = ASCIIEncoding.ASCII.GetBytes(strDeserialized);
-			    //decrypt
-			    //string strDecrypted = ASCIIEncoding.UTF8.GetString(decrypto.TransformFinalBlock(deserializedBytes, 0, deserializedBytes.Length));
-			    string strDecrypted = ASCIIEncoding.UTF8.GetString(decrypto.TransformFinalBlock(decryptedBytes, 0, decryptedBytes.Length));
-			    //deserialize again
-			    string strDecryptedDeserialized = (string)fastJSON.JSON.Instance.Parse(strDecrypted);
-			    return strDecryptedDeserialized;
+                //byte[] decryptedBytes =ASCIIEncoding.ASCII.GetBytes(DecodeFrom64(plainStr));
+                //deserialize
+                //string strDeserialized = (string)fastJSON.JSON.Instance.Parse(ASCIIEncoding.ASCII.GetString(decryptedBytes));
+                //Console.WriteLine("Decoded and deeny" + strDeserialized);
+                //Convert to bytes
+                //byte[] deserializedBytes = ASCIIEncoding.ASCII.GetBytes(strDeserialized);
+                //decrypt
+                //string strDecrypted = ASCIIEncoding.ASCII.GetString(decrypto.TransformFinalBlock(deserializedBytes, 0, deserializedBytes.Length));
+                string strDecrypted = System.Text.Encoding.ASCII.GetString(decrypto.TransformFinalBlock(decryptedBytes, 0, decryptedBytes.Length));
+                //deserialize again
+                //string strDecryptedDeserialized = (string)fastJSON.JSON.Instance.ToObject(strDecrypted);
+                return strDecrypted;
+				//return strDecryptedDeserialized;
             }
         }
 

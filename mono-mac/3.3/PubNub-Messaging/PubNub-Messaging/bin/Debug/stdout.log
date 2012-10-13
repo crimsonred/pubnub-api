@@ -1,163 +1,38 @@
-
-********** Subscribe Messages ********** 
-Timestamp delivered
-System.Collections.ArrayList
-13499717644706648
-hello_world
-ZPmm3ltqO1mLn0xTUzb/Yw==
-yay!
-
-********** Subscribe Messages ********** 
-System.Collections.ArrayList
-13499718563077690
-hello_world
-Timestamp delivered
-Timestamp delivered
+Wi24KS4pcTzvyuGOHubiXg==: = "yay!"
+f42pIQcWZ9zbTbH8cyLwB/tdvRxjFLOYcBNMVKeHS54=: = "Pubnub Messaging API 2"
+f42pIQcWZ9zbTbH8cyLwByD/GsviOE0vcREIEVPARR0=: = "Pubnub Messaging API 1"
+zMqH/RTPlC8yrAZ2UhpEgLKUVzkMI2cikiaVg30AyUu7B6J0FLqCazRzDOmrsFsF = {"this stuff":{"can get":"complicated!"}}
+IDjZE9BHSjcX67RddfCYYg== = {}
++BY5/miAA8aeuhVl4d13Kg== = "\u6f22\u8a9e"
+Zbr7pEF/GFGKj1rOstp0tWzA4nwJXEfj+ezLtAr8qqE= = {"foo":"hi!","bar":[1,2,3,4,5]}
+q/xJqqN6qbiZMXYmiQC1Fw==: = yay!
+"\"\\uFFFD\\uFFFD!\\u0007\\u0016g\\uFFFD\\uFFFDM\\uFFFD\\uFFFDs\\\"\\uFFFD\\u0007\\uFFFD]\\uFFFD\\u001Cc\\u0014\\uFFFD\\uFFFDp\\u0013LT\\uFFFD\\uFFFDK\\uFFFD\""
+yay = f42pIQcWZ9zbTbH8cyLwB/tdvRxjFLOYcBNMVKeHS54=
+dec = "Pubnub Messaging API 2"
+"\"\\uFFFD\\uFFFDI\\uFFFD\\uFFFDz\\uFFFD\\uFFFD\\uFFFD1v&\\uFFFD\\u0000\\uFFFD\\u0017\""
+yay = q/xJqqN6qbiZMXYmiQC1Fw==
+dec = yay!
+"\"\\uFFFD\\uFFFD\\u001E\\u001Ej#\\uFFFD\\uFFFD\\uFFFD\\u0523\\u0001\\uFFFD\\u0343a\""
 Message # 0 published
-
-********** Subscribe Messages ********** 
-System.Collections.ArrayList
-13499718568481156
-hello_world
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
+"\"-\\uFFFD+e\\uFFFD\\uFFFD\\uFFFD#tB\u003e\\u0015\\uE341\\uFFFD\""
 Message # 1 published
-
-********** Subscribe Messages ********** 
-System.Collections.ArrayList
-13499718574682448
-hello_world
-Timestamp delivered
-Timestamp delivered
+"\"\\uFFFD\\uFFFDg\\uFFFD\\uFFFD(\\uFFFD\\uFFFD\\uFFFD\\uB3BE;\\u001E\\uFFFD\\uFFFD\""
 Message # 2 published
-Timestamp delivered
-Timestamp delivered
-
-********** Subscribe Messages ********** 
-System.Collections.ArrayList
-13499718579803076
-hello_world
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
+"\"\\uFFFD\\u001F\\u0004\\u0010\\uFFFDu\\uFFFD\\uFFFDA\\u001DM\\uFFFD9\\uFFFD\\uFFFD\\uFFFD\""
 Message # 3 published
-
-********** Subscribe Messages ********** 
-System.Collections.ArrayList
-13499718585398848
-hello_world
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
+"\"\\uFFFD\\uFFFD\\uFFFD.\\uFFFD\\uFFFD\\u001A=\\uFFFD\\uFFFD\\uFFFD\\u000C\\u0001\\uFFFD\\uFFFDb\""
 Message # 4 published
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
-
-********** Subscribe Messages ********** 
-System.Collections.ArrayList
-13499718594550944
-hello_world
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
+"\"\\uFFFDCDz\\uFFFD\\uFFFD`\\uFFFDI\\u0018\\uFFFDGt\\uFFFD\\uFFFD\""
 Message # 5 published
-
-********** Subscribe Messages ********** 
-System.Collections.ArrayList
-13499718599469848
-hello_world
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
+"\"\\u0581g|,\\uFFFD\\uFFFD\\uFFFDX\\u061A\\uFFFD\\uFFFD\\uFFFD\\u0012\\uFFFD\""
 Message # 6 published
-
-********** Subscribe Messages ********** 
-System.Collections.ArrayList
-13499718604686700
-hello_world
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
+"\"TG\\n\\uFFFD.\\uFFFD\\uFFFDY\\u001E\u003c\\uFFFD\\uFFFD\\uFFFDKv\\uFFFD\""
 Message # 7 published
-
-********** Subscribe Messages ********** 
-System.Collections.ArrayList
-13499718609796424
-hello_world
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
+"\"\\u000F/H_\\uFFFD\\u0016u\\uFFFDS\\uFFFD\\uFFFD\\uFFFDM6\\uFFFD\\uFFFD\""
 Message # 8 published
-
-********** Subscribe Messages ********** 
-System.Collections.ArrayList
-13499718615627912
-hello_world
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
+"\"\\uFFFD\\uFFFD\\uFFFD\\uFFFD\\u0006\\u071B{V\\uFFFD\\uFFFD\\uFFFD_\\uFFFD\\uFFFDw\""
 Message # 9 published
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
-Timestamp delivered
 DetailedHistory with start & end
-DetailedHistory with start & reverse = true
 
 *********** DetailedHistory Messages *********** 
 0
@@ -165,7 +40,7 @@ DetailedHistory with start & reverse = true
 2
 3
 4
-DetailedHistory with start & reverse = false
+DetailedHistory with start & reverse = true
 
 *********** DetailedHistory Messages *********** 
 5
@@ -173,7 +48,13 @@ DetailedHistory with start & reverse = false
 7
 8
 9
+DetailedHistory with start & reverse = false
+
+*********** DetailedHistory Messages *********** 
+0
+1
+2
+3
+4
 
 ******* DetailedHistory Messages Received ******* 
-
-*********** DetailedHistory Messages Received*********** 

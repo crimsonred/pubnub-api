@@ -21,7 +21,7 @@ namespace PubNubMessaging
                     false);
         static public string channel = "hello_world";
         //static public string message = "Pubnub API Usage Example - Publish";
-		static public string message = "Pubnub API Usage Example - Publish";
+        static public string message = "Pubnub API Usage Example - Publish";
 
         /*static public void Main()
         {
@@ -272,18 +272,30 @@ namespace PubNubMessaging
 
         public static void TestEncryptedDetailedHistoryParams()
         {
-		    Subscribe_Example();
-   		    // Context setup for Detailed Histor
+            //Subscribe_Example();
+            // Context setup for Detailed Histor
             pubnub.CIPHER_KEY = "enigma";
             int total_msg = 10;
             long starttime = Timestamp();
-			PubnubCrypto pc = new PubnubCrypto("enigma");
+            PubnubCrypto pc = new PubnubCrypto("enigma");
+			Console.WriteLine ("Wi24KS4pcTzvyuGOHubiXg==: = " + pc.EncryptOrDecrypt(false, "Wi24KS4pcTzvyuGOHubiXg=="));
+			Console.WriteLine ("f42pIQcWZ9zbTbH8cyLwB/tdvRxjFLOYcBNMVKeHS54=: = " + pc.EncryptOrDecrypt(false, "f42pIQcWZ9zbTbH8cyLwB/tdvRxjFLOYcBNMVKeHS54="));
+			Console.WriteLine ("f42pIQcWZ9zbTbH8cyLwByD/GsviOE0vcREIEVPARR0=: = " + pc.EncryptOrDecrypt(false, "f42pIQcWZ9zbTbH8cyLwByD/GsviOE0vcREIEVPARR0="));
+			Console.WriteLine ("zMqH/RTPlC8yrAZ2UhpEgLKUVzkMI2cikiaVg30AyUu7B6J0FLqCazRzDOmrsFsF = " + pc.EncryptOrDecrypt(false, "zMqH/RTPlC8yrAZ2UhpEgLKUVzkMI2cikiaVg30AyUu7B6J0FLqCazRzDOmrsFsF"));
+			Console.WriteLine ("IDjZE9BHSjcX67RddfCYYg== = " + pc.EncryptOrDecrypt(false, "IDjZE9BHSjcX67RddfCYYg=="));
+			Console.WriteLine ("+BY5/miAA8aeuhVl4d13Kg== = " + pc.EncryptOrDecrypt(false, "+BY5/miAA8aeuhVl4d13Kg=="));
 
-			string enc = pc.EncryptOrDecrypt(true, "yay!");
-			Console.WriteLine (enc);
-			//q/xJqqN6qbiZMXYmiQC1Fw==
-			Console.WriteLine (pc.EncryptOrDecrypt(false, enc));
+			//Zbr7pEF/GFGKj1rOstp0tWzA4nwJXEfj+ezLtAr8qqE=
+            Console.WriteLine ("Zbr7pEF/GFGKj1rOstp0tWzA4nwJXEfj+ezLtAr8qqE= = " + pc.EncryptOrDecrypt(false, "Zbr7pEF/GFGKj1rOstp0tWzA4nwJXEfj+ezLtAr8qqE="));
+            Console.WriteLine ("q/xJqqN6qbiZMXYmiQC1Fw==: = " + pc.EncryptOrDecrypt(false, "q/xJqqN6qbiZMXYmiQC1Fw=="));
 
+            string enc = pc.EncryptOrDecrypt(true, "\"Pubnub Messaging API 2\"");
+            Console.WriteLine ("yay = " + enc);
+            Console.WriteLine ("dec = " + pc.EncryptOrDecrypt(false, enc));
+
+            enc = pc.EncryptOrDecrypt(true, "yay!");
+            Console.WriteLine ("yay = " + enc);
+            Console.WriteLine ("dec = " + pc.EncryptOrDecrypt(false, enc));
 
             Dictionary<long, string> inputs = new Dictionary<long, string>();
             for (int i = 0; i < total_msg / 2; i++)
@@ -343,8 +355,8 @@ namespace PubNubMessaging
                 if (e.PropertyName == "Time")
                 {
                     deliveryStatus = true;
-					//added Roger
-					Console.WriteLine("Timestamp delivered");
+                    //added Roger
+                    //Console.WriteLine("Timestamp delivered");
                 }
             };
             pubnub.time();
@@ -427,12 +439,12 @@ namespace PubNubMessaging
                     Console.WriteLine("\n********** Subscribe Messages ********** ");
                     MessageFeeder(((Pubnub)sender).ReturnMessage);
        			}
-				//added Roger
-				else if (e.PropertyName == "Subscribe")
-				{
-					Console.WriteLine("\n********** Subscribe Messages ********** ");
+                //added Roger
+                else if (e.PropertyName == "Subscribe")
+                {
+                    Console.WriteLine("\n********** Subscribe Messages ********** ");
                     MessageFeeder(((Pubnub)sender).Subscribe);
-				}
+                }
             };
             pubnub.subscribe(channel);
         }
@@ -447,12 +459,12 @@ namespace PubNubMessaging
                     Console.WriteLine("\n********** Presence Messages ********** ");
                     MessageFeeder(((Pubnub)sender).ReturnMessage);
                 }
-				//added Roger
-				else if (e.PropertyName == "Presence")
-				{
-					Console.WriteLine("\n********** Presence Messages ********** ");
+                //added Roger
+                else if (e.PropertyName == "Presence")
+                {
+                    Console.WriteLine("\n********** Presence Messages ********** ");
                     MessageFeeder(((Pubnub)sender).Presence);
-				}
+                }
             };
             pubnub.presence(channel);
         }
