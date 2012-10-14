@@ -515,7 +515,7 @@ namespace PubNubMessaging
                                         foreach (object message in result)
                                         {
                                             string strDecrypted = aes.decrypt(message.ToString());
-									        string strDecoded = jS.Deserialize<string>(strDecrypted);
+                                            string strDecoded = jS.Deserialize<string>(strDecrypted);
                                             historyDecrypted.Add(strDecoded);
                                         }
                                         History = historyDecrypted;
@@ -535,8 +535,8 @@ namespace PubNubMessaging
                                         {
                                             foreach(object element in enumerable)
                                             {
-										        string strDecrypted = aes.decrypt(element.ToString());
-									            string strDecoded = jS.Deserialize<string>(strDecrypted);
+                                                string strDecrypted = aes.decrypt(element.ToString());
+                                                string strDecoded = jS.Deserialize<string>(strDecrypted);
                                                 historyDecrypted.Add(strDecoded);
                                             }
                                         }
@@ -545,7 +545,6 @@ namespace PubNubMessaging
                                     else
                                     {
                                         //DetailedHistory = (object[])(result[0]);
-                                        //added Roger
                                         List<object> historyDecrypted = new List<object>();
                                         var myObjectArray = (from item in result select item as object).ToArray();
                                         IEnumerable enumerable = myObjectArray[0] as IEnumerable;
@@ -1227,29 +1226,29 @@ namespace PubNubMessaging
             aesEncryption.Padding = PaddingMode.PKCS7;
             aesEncryption.IV = System.Text.Encoding.ASCII.GetBytes("0123456789012345");
             
-			string strKeySHA256HashRaw = ComputeHash(this.CIPHER_KEY, new SHA256CryptoServiceProvider());
+            string strKeySHA256HashRaw = ComputeHash(this.CIPHER_KEY, new SHA256CryptoServiceProvider());
             string strKeySHA256Hash = (strKeySHA256HashRaw.Replace("-","")).Substring(0, 32);
-			aesEncryption.Key = System.Text.Encoding.ASCII.GetBytes(strKeySHA256Hash.ToLower());
-			JavaScriptSerializer ser = new JavaScriptSerializer();
+            aesEncryption.Key = System.Text.Encoding.ASCII.GetBytes(strKeySHA256Hash.ToLower());
+            JavaScriptSerializer ser = new JavaScriptSerializer();
 
             if (type)
             {
                 ICryptoTransform crypto = aesEncryption.CreateEncryptor();
 
-				plainStr = ser.Serialize(plainStr);
+                plainStr = ser.Serialize(plainStr);
                 //serialize
                 byte[] plainText = ASCIIEncoding.ASCII.GetBytes(plainStr);
                 //encrypt
                 byte[] cipherText = crypto.TransformFinalBlock(plainText, 0, plainText.Length);
-				return Convert.ToBase64String(cipherText);
+                return Convert.ToBase64String(cipherText);
             }
             else
             {
                 ICryptoTransform decrypto = aesEncryption.CreateDecryptor();
                 //decode
                 byte[] decryptedBytes = Convert.FromBase64CharArray(plainStr.ToCharArray(), 0, plainStr.Length);
-				//byte[] decryptedBytes = Convert.FromBase64String(plainStr);
-				//decrypt
+                //byte[] decryptedBytes = Convert.FromBase64String(plainStr);
+                //decrypt
                 string strDecrypted = System.Text.Encoding.ASCII.GetString(decrypto.TransformFinalBlock(decryptedBytes, 0, decryptedBytes.Length));
 
                 return strDecrypted;

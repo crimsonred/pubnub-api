@@ -25,8 +25,8 @@ namespace PubNubMessaging
 		}
 		
 		// Shared initialization code
-		void Initialize ()
-		{	
+        void Initialize ()
+        {	
             //Subscribe Example
             //Pubnub_Example.Subscribe_Example(); //Success
 
@@ -35,7 +35,7 @@ namespace PubNubMessaging
 
             Pubnub_Example.BasicEncryptionDecryptionTests();//success
 
-			//TestEncryptedDetailedHistoryParams
+            //TestEncryptedDetailedHistoryParams
             //Pubnub_Example.TestEncryptedDetailedHistoryParams (); //success
 
             //TestUnencryptedDetailedHistory
@@ -73,10 +73,10 @@ namespace PubNubMessaging
             //TestEncryptedDetailedHistoryParams
             //Pubnub_Example.TestEncryptedDetailedHistoryParams(); //success
             
-			//TestEncryptedHistory
+            //TestEncryptedHistory
             //Pubnub_Example.TestEncryptedHistory(); //Success
 
-			//DetailedHistory_Decrypted_Example
+            //DetailedHistory_Decrypted_Example
             //Pubnub_Example.DetailedHistory_Decrypted_Example(); //Success
 
 		}
