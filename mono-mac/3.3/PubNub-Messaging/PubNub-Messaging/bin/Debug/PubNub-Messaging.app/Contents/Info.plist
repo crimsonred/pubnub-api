@@ -45,7 +45,7 @@
 	<key>MonoBundleExecutable</key>
 	<string>PubNub-Messaging.exe</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>Copyright © rajat</string>
+	<string>Copyright © PubSub</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>

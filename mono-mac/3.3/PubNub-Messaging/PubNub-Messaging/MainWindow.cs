@@ -26,67 +26,58 @@ namespace PubNubMessaging
 		
 		// Shared initialization code
 		void Initialize ()
-		{
-            //Success
-            Pubnub_Example.TestEncryptedDetailedHistoryParams ();
+		{	
+            //Subscribe Example
+            //Pubnub_Example.Subscribe_Example(); //Success
 
-            //Success
-            //Pubnub_Example.TestUnencryptedDetailedHistory();
+            //Publish Example
+            //Pubnub_Example.Publish_Example(); //Success
 
-            //Success
-            //Pubnub_Example.TestUnencryptedDetailedHistoryParams();
+            Pubnub_Example.BasicEncryptionDecryptionTests();//success
 
-            //Success
-            //Console.WriteLine("\nRunning publish()");
-            //Pubnub_Example.Publish_Example();
+			//TestEncryptedDetailedHistoryParams
+            //Pubnub_Example.TestEncryptedDetailedHistoryParams (); //success
 
-            //Success
-            //Console.WriteLine("\nRunning detailedHistory()");
-            //Pubnub_Example.DetailedHistory_Example();
+            //TestUnencryptedDetailedHistory
+            //Pubnub_Example.TestUnencryptedDetailedHistory(); //success
 
-            //Random Failure, looks like when detailed history is empty
-            //Console.WriteLine("\nRunning detailedHistory()");
-            //Pubnub_Example.DetailedHistory_Decrypted_Example();
+            //TestUnencryptedDetailedHistoryParams
+            //Pubnub_Example.TestUnencryptedDetailedHistoryParams(); //success
 
-            //Success
-            //Console.WriteLine("\nRunning timestamp()");
-            //Pubnub_Example.Timestamp();
-
-            //Success
-            //Console.WriteLine("\nRunning here_now()");
-            //Pubnub_Example.HereNow_Example();
-
-            //Success
-            //Console.WriteLine("\nRunning presence()");
-            //Pubnub_Example.Presence_Example();
-
-            //Success
-            //Console.WriteLine("\nRunning Subscribe()");
-            //Pubnub_Example.Subscribe_Example();
-
-            //Success
-            //Console.WriteLine("\nRunning TestUnencryptedHistory()");
-            //Pubnub_Example.TestUnencryptedHistory();
-
-            //Success
-            //Console.WriteLine("\nRunning TestEncryptedHistory()");
-            //Pubnub_Example.TestEncryptedHistory();
-
-            //Success
-            //Console.WriteLine("\nRunning TestUnencryptedDetailedHistory()");
-            //Pubnub_Example.TestUnencryptedDetailedHistory();
+            //DetailedHistory_Example
+            //Pubnub_Example.DetailedHistory_Example(); //success
             
-            //Success
-            //Console.WriteLine("\nRunning TestEncryptedDetailedHistory()");
-            //Pubnub_Example.TestEncryptedDetailedHistory();
 
-            //Success
-            //Console.WriteLine("\nRunning TestUnencryptedDetailedHistoryParams()");
-            //Pubnub_Example.TestUnencryptedDetailedHistoryParams();
+            //Timestamp
+            //Pubnub_Example.Timestamp(); //success
 
-            //Success
-            //Console.WriteLine("\nRunning TestEncryptedDetailedHistoryParams()");
-            //Pubnub_Example.TestEncryptedDetailedHistoryParams();
+            //HereNow_Example
+            //Pubnub_Example.HereNow_Example(); //success
+
+            //Presence_Example
+            //Pubnub_Example.Presence_Example(); //success
+
+            //TestUnencryptedHistory
+            //Pubnub_Example.TestUnencryptedHistory(); //success
+
+
+            //TestUnencryptedDetailedHistory
+            //Pubnub_Example.TestUnencryptedDetailedHistory(); //success
+            
+            //TestEncryptedDetailedHistory
+            //Pubnub_Example.TestEncryptedDetailedHistory(); //success
+
+            //TestUnencryptedDetailedHistoryParams
+            //Pubnub_Example.TestUnencryptedDetailedHistoryParams(); //success
+
+            //TestEncryptedDetailedHistoryParams
+            //Pubnub_Example.TestEncryptedDetailedHistoryParams(); //success
+            
+			//TestEncryptedHistory
+            //Pubnub_Example.TestEncryptedHistory(); //Success
+
+			//DetailedHistory_Decrypted_Example
+            //Pubnub_Example.DetailedHistory_Decrypted_Example(); //Success
 
 		}
 		

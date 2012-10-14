@@ -6,7 +6,6 @@ using System.ComponentModel;
 //added ra
 using System.Security.Cryptography;
 using System.IO;
-using fastJSON;
 
 namespace PubNubMessaging
 {
@@ -269,34 +268,40 @@ namespace PubNubMessaging
             Console.WriteLine("\n******* DetailedHistory Messages Received ******* ");
         }
 
+		public static void BasicEncryptionDecryptionTests ()
+		{
+			PubnubCrypto pc = new PubnubCrypto("enigma");
 
-        public static void TestEncryptedDetailedHistoryParams()
-        {
-            //Subscribe_Example();
-            // Context setup for Detailed Histor
-            pubnub.CIPHER_KEY = "enigma";
-            int total_msg = 10;
-            long starttime = Timestamp();
-            PubnubCrypto pc = new PubnubCrypto("enigma");
-			Console.WriteLine ("Wi24KS4pcTzvyuGOHubiXg==: = " + pc.EncryptOrDecrypt(false, "Wi24KS4pcTzvyuGOHubiXg=="));
-			Console.WriteLine ("f42pIQcWZ9zbTbH8cyLwB/tdvRxjFLOYcBNMVKeHS54=: = " + pc.EncryptOrDecrypt(false, "f42pIQcWZ9zbTbH8cyLwB/tdvRxjFLOYcBNMVKeHS54="));
-			Console.WriteLine ("f42pIQcWZ9zbTbH8cyLwByD/GsviOE0vcREIEVPARR0=: = " + pc.EncryptOrDecrypt(false, "f42pIQcWZ9zbTbH8cyLwByD/GsviOE0vcREIEVPARR0="));
-			Console.WriteLine ("zMqH/RTPlC8yrAZ2UhpEgLKUVzkMI2cikiaVg30AyUu7B6J0FLqCazRzDOmrsFsF = " + pc.EncryptOrDecrypt(false, "zMqH/RTPlC8yrAZ2UhpEgLKUVzkMI2cikiaVg30AyUu7B6J0FLqCazRzDOmrsFsF"));
-			Console.WriteLine ("IDjZE9BHSjcX67RddfCYYg== = " + pc.EncryptOrDecrypt(false, "IDjZE9BHSjcX67RddfCYYg=="));
-			Console.WriteLine ("+BY5/miAA8aeuhVl4d13Kg== = " + pc.EncryptOrDecrypt(false, "+BY5/miAA8aeuhVl4d13Kg=="));
-
-			//Zbr7pEF/GFGKj1rOstp0tWzA4nwJXEfj+ezLtAr8qqE=
-            Console.WriteLine ("Zbr7pEF/GFGKj1rOstp0tWzA4nwJXEfj+ezLtAr8qqE= = " + pc.EncryptOrDecrypt(false, "Zbr7pEF/GFGKj1rOstp0tWzA4nwJXEfj+ezLtAr8qqE="));
-            Console.WriteLine ("q/xJqqN6qbiZMXYmiQC1Fw==: = " + pc.EncryptOrDecrypt(false, "q/xJqqN6qbiZMXYmiQC1Fw=="));
-
-            string enc = pc.EncryptOrDecrypt(true, "\"Pubnub Messaging API 2\"");
-            Console.WriteLine ("yay = " + enc);
+            string enc = pc.EncryptOrDecrypt(true, "Pubnub Messaging API 1");
+            Console.WriteLine ("Pubnub Messaging API 1 = " + enc);
             Console.WriteLine ("dec = " + pc.EncryptOrDecrypt(false, enc));
 
             enc = pc.EncryptOrDecrypt(true, "yay!");
             Console.WriteLine ("yay = " + enc);
             Console.WriteLine ("dec = " + pc.EncryptOrDecrypt(false, enc));
 
+			Console.WriteLine ("Wi24KS4pcTzvyuGOHubiXg==: = " + pc.EncryptOrDecrypt(false, "Wi24KS4pcTzvyuGOHubiXg=="));
+			Console.WriteLine ("f42pIQcWZ9zbTbH8cyLwB/tdvRxjFLOYcBNMVKeHS54=: = " + pc.EncryptOrDecrypt(false, "f42pIQcWZ9zbTbH8cyLwB/tdvRxjFLOYcBNMVKeHS54="));
+			Console.WriteLine ("f42pIQcWZ9zbTbH8cyLwByD/GsviOE0vcREIEVPARR0=: = " + pc.EncryptOrDecrypt(false, "f42pIQcWZ9zbTbH8cyLwByD/GsviOE0vcREIEVPARR0="));
+			Console.WriteLine ("zMqH/RTPlC8yrAZ2UhpEgLKUVzkMI2cikiaVg30AyUu7B6J0FLqCazRzDOmrsFsF = " + pc.EncryptOrDecrypt(false, "zMqH/RTPlC8yrAZ2UhpEgLKUVzkMI2cikiaVg30AyUu7B6J0FLqCazRzDOmrsFsF"));
+			Console.WriteLine ("GsvkCYZoYylL5a7/DKhysDjNbwn+BtBtHj2CvzC4Y4g= = " + pc.EncryptOrDecrypt(false, "GsvkCYZoYylL5a7/DKhysDjNbwn+BtBtHj2CvzC4Y4g="));
+
+			Console.WriteLine ("IDjZE9BHSjcX67RddfCYYg== = " + pc.EncryptOrDecrypt(false, "IDjZE9BHSjcX67RddfCYYg=="));
+			Console.WriteLine ("Ns4TB41JjT2NCXaGLWSPAQ== = " + pc.EncryptOrDecrypt(false, "Ns4TB41JjT2NCXaGLWSPAQ=="));
+
+			Console.WriteLine ("+BY5/miAA8aeuhVl4d13Kg== = " + pc.EncryptOrDecrypt(false, "+BY5/miAA8aeuhVl4d13Kg=="));
+
+            Console.WriteLine ("Zbr7pEF/GFGKj1rOstp0tWzA4nwJXEfj+ezLtAr8qqE= = " + pc.EncryptOrDecrypt(false, "Zbr7pEF/GFGKj1rOstp0tWzA4nwJXEfj+ezLtAr8qqE="));
+            Console.WriteLine ("q/xJqqN6qbiZMXYmiQC1Fw==: = " + pc.EncryptOrDecrypt(false, "q/xJqqN6qbiZMXYmiQC1Fw=="));
+		}
+
+        public static void TestEncryptedDetailedHistoryParams()
+        {
+            // Context setup for Detailed Histor
+            pubnub.CIPHER_KEY = "enigma";
+            int total_msg = 10;
+            long starttime = Timestamp();
+            
             Dictionary<long, string> inputs = new Dictionary<long, string>();
             for (int i = 0; i < total_msg / 2; i++)
             {
@@ -355,7 +360,7 @@ namespace PubNubMessaging
                 if (e.PropertyName == "Time")
                 {
                     deliveryStatus = true;
-                    //added Roger
+                    //test
                     //Console.WriteLine("Timestamp delivered");
                 }
             };

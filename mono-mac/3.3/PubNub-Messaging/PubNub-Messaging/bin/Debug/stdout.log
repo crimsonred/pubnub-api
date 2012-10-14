@@ -1,60 +1,14 @@
+Pubnub Messaging API 1 = f42pIQcWZ9zbTbH8cyLwByD/GsviOE0vcREIEVPARR0=
+dec = "Pubnub Messaging API 1"
+yay = Wi24KS4pcTzvyuGOHubiXg==
+dec = "yay!"
 Wi24KS4pcTzvyuGOHubiXg==: = "yay!"
 f42pIQcWZ9zbTbH8cyLwB/tdvRxjFLOYcBNMVKeHS54=: = "Pubnub Messaging API 2"
 f42pIQcWZ9zbTbH8cyLwByD/GsviOE0vcREIEVPARR0=: = "Pubnub Messaging API 1"
 zMqH/RTPlC8yrAZ2UhpEgLKUVzkMI2cikiaVg30AyUu7B6J0FLqCazRzDOmrsFsF = {"this stuff":{"can get":"complicated!"}}
+GsvkCYZoYylL5a7/DKhysDjNbwn+BtBtHj2CvzC4Y4g= = {"foo":{"bar":"foobar"}}
 IDjZE9BHSjcX67RddfCYYg== = {}
+Ns4TB41JjT2NCXaGLWSPAQ== = []
 +BY5/miAA8aeuhVl4d13Kg== = "\u6f22\u8a9e"
 Zbr7pEF/GFGKj1rOstp0tWzA4nwJXEfj+ezLtAr8qqE= = {"foo":"hi!","bar":[1,2,3,4,5]}
 q/xJqqN6qbiZMXYmiQC1Fw==: = yay!
-"\"\\uFFFD\\uFFFD!\\u0007\\u0016g\\uFFFD\\uFFFDM\\uFFFD\\uFFFDs\\\"\\uFFFD\\u0007\\uFFFD]\\uFFFD\\u001Cc\\u0014\\uFFFD\\uFFFDp\\u0013LT\\uFFFD\\uFFFDK\\uFFFD\""
-yay = f42pIQcWZ9zbTbH8cyLwB/tdvRxjFLOYcBNMVKeHS54=
-dec = "Pubnub Messaging API 2"
-"\"\\uFFFD\\uFFFDI\\uFFFD\\uFFFDz\\uFFFD\\uFFFD\\uFFFD1v&\\uFFFD\\u0000\\uFFFD\\u0017\""
-yay = q/xJqqN6qbiZMXYmiQC1Fw==
-dec = yay!
-"\"\\uFFFD\\uFFFD\\u001E\\u001Ej#\\uFFFD\\uFFFD\\uFFFD\\u0523\\u0001\\uFFFD\\u0343a\""
-Message # 0 published
-"\"-\\uFFFD+e\\uFFFD\\uFFFD\\uFFFD#tB\u003e\\u0015\\uE341\\uFFFD\""
-Message # 1 published
-"\"\\uFFFD\\uFFFDg\\uFFFD\\uFFFD(\\uFFFD\\uFFFD\\uFFFD\\uB3BE;\\u001E\\uFFFD\\uFFFD\""
-Message # 2 published
-"\"\\uFFFD\\u001F\\u0004\\u0010\\uFFFDu\\uFFFD\\uFFFDA\\u001DM\\uFFFD9\\uFFFD\\uFFFD\\uFFFD\""
-Message # 3 published
-"\"\\uFFFD\\uFFFD\\uFFFD.\\uFFFD\\uFFFD\\u001A=\\uFFFD\\uFFFD\\uFFFD\\u000C\\u0001\\uFFFD\\uFFFDb\""
-Message # 4 published
-"\"\\uFFFDCDz\\uFFFD\\uFFFD`\\uFFFDI\\u0018\\uFFFDGt\\uFFFD\\uFFFD\""
-Message # 5 published
-"\"\\u0581g|,\\uFFFD\\uFFFD\\uFFFDX\\u061A\\uFFFD\\uFFFD\\uFFFD\\u0012\\uFFFD\""
-Message # 6 published
-"\"TG\\n\\uFFFD.\\uFFFD\\uFFFDY\\u001E\u003c\\uFFFD\\uFFFD\\uFFFDKv\\uFFFD\""
-Message # 7 published
-"\"\\u000F/H_\\uFFFD\\u0016u\\uFFFDS\\uFFFD\\uFFFD\\uFFFDM6\\uFFFD\\uFFFD\""
-Message # 8 published
-"\"\\uFFFD\\uFFFD\\uFFFD\\uFFFD\\u0006\\u071B{V\\uFFFD\\uFFFD\\uFFFD_\\uFFFD\\uFFFDw\""
-Message # 9 published
-DetailedHistory with start & end
-
-*********** DetailedHistory Messages *********** 
-0
-1
-2
-3
-4
-DetailedHistory with start & reverse = true
-
-*********** DetailedHistory Messages *********** 
-5
-6
-7
-8
-9
-DetailedHistory with start & reverse = false
-
-*********** DetailedHistory Messages *********** 
-0
-1
-2
-3
-4
-
-******* DetailedHistory Messages Received ******* 
