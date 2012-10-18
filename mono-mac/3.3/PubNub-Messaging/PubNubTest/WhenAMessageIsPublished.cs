@@ -6,9 +6,10 @@ using System.Collections.Generic;
 
 namespace PubNubTest
 {
-	[TestFixture]
+    [TestFixture]
     public class WhenAMessageIsPublished
     {
+
         [Test]
         public void ThenItShouldReturnSuccessCodeAndInfo()
         {
@@ -19,12 +20,31 @@ namespace PubNubTest
                 "",
                 false
             );
-            string channel = "my/channel";
+            string channel = "hello_world";
             string message = "Pubnub API Usage Example";
 
-            pubnub.PropertyChanged += new PropertyChangedEventHandler(Pubnub_PropertyChanged);
+            bool deliveryStatus = false;
+
+            string strSent = "";
+            string strOne = "";
+            //Add a PropertyChanged event handler 
+            pubnub.PropertyChanged += delegate(object sender, PropertyChangedEventArgs e)
+            {
+                if (e.PropertyName == "Publish")
+                {
+                    strSent = ((Pubnub)sender).Publish[1].ToString();
+                    strOne = ((Pubnub)sender).Publish[0].ToString();
+                    Console.WriteLine(strSent);
+                    Console.WriteLine(strOne);
+                    deliveryStatus = true;
+                }
+            };
 
             pubnub.publish(channel, message);
+            //wait till the response is received from the server
+            while (!deliveryStatus) ;
+            Assert.AreEqual("Sent", strSent);
+            Assert.AreEqual("1", strOne);
         }
 
         static void Pubnub_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -111,7 +131,7 @@ namespace PubNubTest
                 "demo",
                 ""
             );
-            string channel = "my/channel";
+            string channel = "hello_world";
             string message = "Pubnub API Usage Example";
 
             pubnub.PropertyChanged += new PropertyChangedEventHandler(Pubnub_PropertyChanged);

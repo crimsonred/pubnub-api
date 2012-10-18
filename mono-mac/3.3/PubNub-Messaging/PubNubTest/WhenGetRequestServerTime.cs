@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace PubNubTest
 {
-	[TestFixture]
+    [TestFixture]
     public class WhenGetRequestServerTime
     {
         [Test]
@@ -20,15 +20,24 @@ namespace PubNubTest
                 false
             );
             
-            pubnub.PropertyChanged += new PropertyChangedEventHandler(Pubnub_PropertyChanged);
+            bool responseStatus = false;
+
+            string strResponse = "";
+            pubnub.PropertyChanged += delegate(object sender, PropertyChangedEventArgs e) {
+                if (e.PropertyName == "Time") {
+                    strResponse = ((Pubnub)sender).Time[0].ToString();
+
+                    responseStatus = true;
+                }
+            };
 
             pubnub.time();
+            while (!responseStatus);
+
+            Console.WriteLine (strResponse);
+            Assert.AreNotEqual("0",strResponse);
         }
 
-        static void Pubnub_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            Assert.AreNotEqual("0", ((Pubnub)sender).Time[0].ToString());
-        }
     }
 }
 

@@ -275,6 +275,9 @@ namespace PubNubLib
             if (this.CIPHER_KEY.Length > 0)
             {
                 PubnubCrypto aes = new PubnubCrypto(this.CIPHER_KEY);
+				//serialize the message
+				message = ser.Serialize(message.ToString());
+				//encrypt and encode
                 message = aes.encrypt(message_org);
             }
 
@@ -1203,12 +1206,34 @@ namespace PubNubLib
             this.CIPHER_KEY = cipher_key;
         }
 
+		/// <summary>
+		/// Computes the hash using the specified algo
+		/// </summary>
+		/// <returns>
+		/// The hash.
+		/// </returns>
+		/// <param name='input'>
+		/// Input string
+		/// </param>
+		/// <param name='algorithm'>
+		/// Algorithm to use for Hashing
+		/// </param>
         public static string ComputeHash(string input, HashAlgorithm algorithm)
         {
            Byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(input);
            Byte[] hashedBytes = algorithm.ComputeHash(inputBytes);
            return BitConverter.ToString(hashedBytes);
         }
+
+		public string GetEncryptionKey ()
+		{
+			//Compute Hash using the SHA256 
+            string strKeySHA256HashRaw = ComputeHash(this.CIPHER_KEY, new SHA256CryptoServiceProvider());
+			//delete the "-" that appear after every 2 chars
+            string strKeySHA256Hash = (strKeySHA256HashRaw.Replace("-","")).Substring(0, 32);
+			//convert to lower case
+            return strKeySHA256Hash.ToLower();
+		}
 
         /**
          * EncryptOrDecrypt
@@ -1222,21 +1247,21 @@ namespace PubNubLib
             RijndaelManaged aesEncryption = new RijndaelManaged();
             aesEncryption.KeySize = 256;
             aesEncryption.BlockSize = 128;
+			//Mode CBC
             aesEncryption.Mode = CipherMode.CBC;
+			//padding
             aesEncryption.Padding = PaddingMode.PKCS7;
+			//get ASCII bytes of the string
             aesEncryption.IV = System.Text.Encoding.ASCII.GetBytes("0123456789012345");
             
-            string strKeySHA256HashRaw = ComputeHash(this.CIPHER_KEY, new SHA256CryptoServiceProvider());
-            string strKeySHA256Hash = (strKeySHA256HashRaw.Replace("-","")).Substring(0, 32);
-            aesEncryption.Key = System.Text.Encoding.ASCII.GetBytes(strKeySHA256Hash.ToLower());
+			aesEncryption.Key = System.Text.Encoding.ASCII.GetBytes(GetEncryptionKey());
             JavaScriptSerializer ser = new JavaScriptSerializer();
 
             if (type)
             {
                 ICryptoTransform crypto = aesEncryption.CreateEncryptor();
 
-                plainStr = ser.Serialize(plainStr);
-                //serialize
+                //plainStr = ser.Serialize(plainStr);
                 byte[] plainText = ASCIIEncoding.ASCII.GetBytes(plainStr);
                 //encrypt
                 byte[] cipherText = crypto.TransformFinalBlock(plainText, 0, plainText.Length);

@@ -3,36 +3,53 @@ using PubNubLib;
 using NUnit.Framework;
 using System.ComponentModel;
 using System.Collections.Generic;
+using System.Collections;
 
 namespace PubNubTest
 {
-	[TestFixture]
+    [TestFixture]
     public class WhenSubscribedToAChannel
     {
         [Test]
-        public void ThenItShouldReturnReceivedMessage()
+        public void ThenItShouldReturnReceivedMessage ()
         {
             string status = "";
-            Pubnub pubnub = new Pubnub(
+            Pubnub pubnub = new Pubnub (
                    "demo",
                    "demo",
                    "",
                    "",
                    false);
-            string channel = "my/channel";
+            string channel = "hello_world";
 
-            pubnub.PropertyChanged += delegate(object sender, PropertyChangedEventArgs e)
-            {
-                if (e.PropertyName == "ReturnMessage")
-                {
-                    Dictionary<string, object> _message = (Dictionary<string, object>)(((Pubnub)sender).ReturnMessage);
-                    Console.WriteLine("Received Message -> '" + _message["text"] + "'");
-                    status = _message["text"].ToString();
-                    Assert.AreEqual("assert", status);
+            bool responseStatus = false;
+
+            List<object> lstSubscribe = null;
+
+            pubnub.PropertyChanged += delegate(object sender, PropertyChangedEventArgs e) {
+                if (e.PropertyName == "Subscribe") {
+                    lstSubscribe = ((Pubnub)sender).Subscribe;
+
+                    responseStatus = true;
                 }
             };
-            pubnub.subscribe(channel);           
-            
+
+            pubnub.subscribe (channel); 
+
+            while (!responseStatus)
+                ;
+
+            string strResponse = "";
+            Console.WriteLine (lstSubscribe);
+            if (lstSubscribe.Equals (null)) {
+                Assert.Fail("Null response");
+            } else {
+                foreach (object lst in lstSubscribe) {
+                    strResponse = lst.ToString ();
+                    Console.WriteLine (strResponse);
+                    Assert.IsNotEmpty (strResponse);
+                }
+            }
         }
     }
 }

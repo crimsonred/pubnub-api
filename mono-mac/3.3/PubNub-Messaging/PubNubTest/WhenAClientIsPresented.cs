@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace PubNubTest
 {
-	[TestFixture]
+    [TestFixture]
     public class WhenAClientIsPresented
     {
         [Test]
@@ -21,23 +21,35 @@ namespace PubNubTest
             );
             string channel = "hello_world";
 
-            pubnub.PropertyChanged += new PropertyChangedEventHandler(Pubnub_PropertyChanged);
+            bool responseStatus = false;
+            List<object> lstHistory = null;
+
+            pubnub.PropertyChanged += delegate(object sender, PropertyChangedEventArgs e) {
+
+                if (e.PropertyName == "Presence")
+                {
+                    lstHistory = ((Pubnub)sender).Presence;
+
+                    responseStatus = true;
+                }
+            };
 
             pubnub.presence(channel);
-        }
+            while (!responseStatus) ;
 
-        static void Pubnub_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            Dictionary<string, object> _message = (Dictionary<string, object>)(((Pubnub)sender).ReturnMessage);
-            if (e.PropertyName != "Here_Now")
-            {
-				Console.WriteLine(_message["text"]);
-                Assert.IsNotNull(_message["text"]);
+            string strResponse = "";
+            if (lstHistory.Equals (null)) {
+                Assert.Fail("Null response");
             }
             else
             {
-				Console.WriteLine(_message["uuid"]);
-                Assert.AreEqual("NN", _message["uuid"]);
+                foreach(object lst in lstHistory)
+                {
+                    strResponse = lst.ToString();
+                    Console.WriteLine(strResponse);
+                    //Assert.IsNotEmpty(strResponse);
+                }
+                Assert.AreEqual(lstHistory[2], "hello_world-pnpres");
             }
         }
 
@@ -53,9 +65,49 @@ namespace PubNubTest
            );
             string channel = "hello_world";
 
-            pubnub.PropertyChanged += new PropertyChangedEventHandler(Pubnub_PropertyChanged);
+            bool responseStatus = false;
+            List<object> lstHistory = null;
+
+            pubnub.PropertyChanged += delegate(object sender, PropertyChangedEventArgs e) {
+
+                if (e.PropertyName == "Here_Now")
+                {
+                    lstHistory = ((Pubnub)sender).Here_Now;
+
+                    responseStatus = true;
+                }
+            };
 
             pubnub.here_now(channel);
+            while (!responseStatus) ;
+
+            string strResponse = "";
+            if (lstHistory.Equals (null)) {
+                Assert.Fail("Null response");
+            }
+            else
+            {
+                //Console.WriteLine(_message["text"]);
+                foreach(object lst in lstHistory)
+                {
+                    strResponse = lst.ToString();
+                    Console.WriteLine(strResponse);
+                    //Assert.IsNotEmpty(strResponse);
+                }
+                Dictionary<string, object> message = (Dictionary<string, object>)lstHistory[0];
+                foreach(KeyValuePair<String, object> entry in message)
+                {
+                    Console.WriteLine("value:" + entry.Value + "  " + "key:" + entry.Key);
+                }
+
+                object[] objUuid = (object[])message["uuids"];
+                foreach (object obj in objUuid)
+                {
+                    Console.WriteLine(obj.ToString()); 
+                }
+                Assert.AreNotEqual(0, message["occupancy"]);
+            }
+
         }
     }
 }

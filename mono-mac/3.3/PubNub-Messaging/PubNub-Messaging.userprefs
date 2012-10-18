@@ -1,30 +1,22 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="PubNubTest/WhenSubscribedToAChannel.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="PubNubTest/EncryptionTests.cs">
     <Files>
-      <File FileName="PubNub-Messaging/Main.cs" Line="1" Column="1" />
-      <File FileName="PubNub-Messaging/MainWindow.cs" Line="33" Column="30" />
-      <File FileName="PubNub-Messaging/Pubnub.cs" Line="1274" Column="65" />
-      <File FileName="PubNub-Messaging/Pubnub_Example.cs" Line="289" Column="1" />
-      <File FileName="PubNub-Messaging/MainWindowController.cs" Line="43" Column="1" />
-      <File FileName="PubNubLib/Pubnub.cs" Line="26" Column="14" />
-      <File FileName="PubNubTest/WhenAClientIsPresented.cs" Line="6" Column="1" />
-      <File FileName="PubNubTest/WhenAMessageIsPublished.cs" Line="1" Column="1" />
-      <File FileName="PubNubTest/WhenDetailedHistoryIsRequested.cs" Line="1" Column="1" />
-      <File FileName="PubNubTest/WhenGetRequestHistoryMessages.cs" Line="1" Column="1" />
-      <File FileName="PubNubTest/WhenGetRequestServerTime.cs" Line="1" Column="1" />
-      <File FileName="PubNubTest/WhenSubscribedToAChannel.cs" Line="29" Column="79" />
+      <File FileName="PubNubTest/EncryptionTests.cs" Line="48" Column="1" />
+      <File FileName="PubNub-Messaging/Pubnub_Example.cs" Line="283" Column="60" />
+      <File FileName="PubNubLib/Pubnub.cs" Line="1243" Column="19" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State expanded="True">
-          <Node name="PubNubLib" expanded="True" />
+          <Node name="PubNubLib" expanded="True">
+            <Node name="References" expanded="True" />
+          </Node>
           <Node name="PubNub-Messaging" expanded="True">
             <Node name="References" expanded="True" />
           </Node>
-          <Node name="PubNubTest" expanded="True">
+          <Node name="PubNubTest" expanded="True" selected="True">
             <Node name="References" expanded="True" />
-            <Node name="WhenSubscribedToAChannel.cs" selected="True" />
           </Node>
         </State>
       </Pad>
@@ -41,7 +33,9 @@
         <State expanded="True">
           <Node name="PubNubTest" expanded="True">
             <Node name="PubNubTest" expanded="True">
-              <Node name="WhenGetRequestHistoryMessages" selected="True" />
+              <Node name="EncryptionTests" expanded="True">
+                <Node name="TestPubNubDecryption1" selected="True" />
+              </Node>
             </Node>
           </Node>
         </State>
@@ -52,6 +46,11 @@
     <BreakpointStore>
       <Breakpoint file="/Volumes/Macintosh/Users/rajatkalsy/Projects/Client/ODesk/pubnub/git/pubnub-api/mono-mac/3.3/PubNub-Messaging/PubNub-Messaging/Pubnub_Example.cs" line="277" />
       <Breakpoint file="/Volumes/Macintosh/Users/rajatkalsy/Projects/Client/ODesk/pubnub/git/pubnub-api/mono-mac/3.3/PubNub-Messaging/PubNub-Messaging/Pubnub_Example.cs" line="288" />
+      <Breakpoint file="/Volumes/Macintosh/Users/rajatkalsy/Projects/Client/ODesk/pubnub/git/pubnub-api/mono-mac/3.3/PubNub-Messaging/PubNubLib/Pubnub.cs" line="515" />
+      <Breakpoint file="/Volumes/Macintosh/Users/rajatkalsy/Projects/Client/ODesk/pubnub/git/pubnub-api/mono-mac/3.3/PubNub-Messaging/PubNubLib/Pubnub.cs" line="534" />
+      <Breakpoint file="/Volumes/Macintosh/Users/rajatkalsy/Projects/Client/ODesk/pubnub/git/pubnub-api/mono-mac/3.3/PubNub-Messaging/PubNubLib/Pubnub.cs" line="565" />
+      <Breakpoint file="/Volumes/Macintosh/Users/rajatkalsy/Projects/Client/ODesk/pubnub/git/pubnub-api/mono-mac/3.3/PubNub-Messaging/PubNubLib/Pubnub.cs" line="571" />
+      <Breakpoint file="/Volumes/Macintosh/Users/rajatkalsy/Projects/Client/ODesk/pubnub/git/pubnub-api/mono-mac/3.3/PubNub-Messaging/PubNubLib/Pubnub.cs" line="575" />
     </BreakpointStore>
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches>
