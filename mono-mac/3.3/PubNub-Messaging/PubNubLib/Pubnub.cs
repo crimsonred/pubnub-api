@@ -275,9 +275,9 @@ namespace PubNubLib
             if (this.CIPHER_KEY.Length > 0)
             {
                 PubnubCrypto aes = new PubnubCrypto(this.CIPHER_KEY);
-				//serialize the message
-				message = ser.Serialize(message);
-				//encrypt and encode
+                //serialize the message
+                message = ser.Serialize(message);
+                //encrypt and encode
                 message = aes.encrypt(message.ToString());
             }
 
@@ -290,7 +290,7 @@ namespace PubNubLib
             url.Add(channel);
             url.Add("0");
             //url.Add(SerializeToJsonString(message));
-			url.Add(ser.Serialize(message));
+            url.Add(ser.Serialize(message));
 
             return _request(url, ResponseType.Publish);
         }
@@ -1263,8 +1263,8 @@ namespace PubNubLib
 
                 //plainStr = ser.Serialize(plainStr);
                 byte[] plainText = Encoding.ASCII.GetBytes(plainStr);
-				//byte[] plainText = Encoding.Unicode.GetBytes(plainStr);
-				//byte[] plainText = Encoding.GetEncoding(1252).GetBytes(plainStr);
+                //byte[] plainText = Encoding.Unicode.GetBytes(plainStr);
+                //byte[] plainText = Encoding.GetEncoding(1252).GetBytes(plainStr);
 
                 //encrypt
                 byte[] cipherText = crypto.TransformFinalBlock(plainText, 0, plainText.Length);

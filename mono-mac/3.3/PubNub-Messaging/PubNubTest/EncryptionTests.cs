@@ -414,6 +414,7 @@ namespace PubNubTest
             strMessage= js.Serialize(strMessage);
             Console.WriteLine(strMessage);
             string enc = pc.EncryptOrDecrypt(true, strMessage);
+            Console.WriteLine(enc);
             Assert.AreEqual("+BY5/miAA8aeuhVl4d13Kg==", enc);
         }
        /// <summary>
