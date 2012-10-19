@@ -92,7 +92,7 @@ namespace PubNubTest
                 {
                     strResponse = lst.ToString();
                     Console.WriteLine(strResponse);
-                    //Assert.IsNotEmpty(strResponse);
+                    Assert.IsNotEmpty(strResponse);
                 }
                 Dictionary<string, object> message = (Dictionary<string, object>)lstHistory[0];
                 foreach(KeyValuePair<String, object> entry in message)
@@ -105,7 +105,7 @@ namespace PubNubTest
                 {
                     Console.WriteLine(obj.ToString()); 
                 }
-                Assert.AreNotEqual(0, message["occupancy"]);
+                //Assert.AreNotEqual(0, message["occupancy"]);
             }
 
         }

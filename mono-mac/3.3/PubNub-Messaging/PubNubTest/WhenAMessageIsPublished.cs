@@ -9,7 +9,42 @@ namespace PubNubTest
     [TestFixture]
     public class WhenAMessageIsPublished
     {
+        
+        public void NullMessage()
+        {
+            Pubnub pubnub = new Pubnub(
+                "demo",
+                "demo",
+                "",
+                "",
+                false
+            );
+            string channel = "hello_world";
+            string message = null;
 
+            bool deliveryStatus = false;
+
+            string strSent = "";
+            string strOne = "";
+            //Add a PropertyChanged event handler 
+            pubnub.PropertyChanged += delegate(object sender, PropertyChangedEventArgs e)
+            {
+                if (e.PropertyName == "Publish")
+                {
+                    strSent = ((Pubnub)sender).Publish[1].ToString();
+                    strOne = ((Pubnub)sender).Publish[0].ToString();
+                    Console.WriteLine(strSent);
+                    Console.WriteLine(strOne);
+                    deliveryStatus = true;
+                }
+            };
+
+            pubnub.publish(channel, message);
+            //wait till the response is received from the server
+            while (!deliveryStatus) ;
+            Assert.AreEqual("Sent", strSent);
+            Assert.AreEqual("1", strOne);
+        }
         [Test]
         public void ThenItShouldReturnSuccessCodeAndInfo()
         {

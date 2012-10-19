@@ -33,10 +33,10 @@ namespace PubNubMessaging
             //Publish Example
             //Pubnub_Example.Publish_Example(); //Success
 
-            //Pubnub_Example.BasicEncryptionDecryptionTests();//success
+            Pubnub_Example.BasicEncryptionDecryptionTests();//success
 
             //TestEncryptedDetailedHistoryParams
-            Pubnub_Example.TestEncryptedDetailedHistoryParams (); //success
+            //Pubnub_Example.TestEncryptedDetailedHistoryParams (); //success
 
             //TestUnencryptedDetailedHistory
             //Pubnub_Example.TestUnencryptedDetailedHistory(); //success

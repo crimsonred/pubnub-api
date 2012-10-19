@@ -4,12 +4,45 @@ using NUnit.Framework;
 using System.ComponentModel;
 using System.Collections.Generic;
 using System.Web.Script.Serialization;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Globalization;
 
 namespace PubNubTest
 {
     [TestFixture]
     public class EncryptionTests
     {
+        /// <summary>
+        /// Tests the yay decryption.
+        /// Assumes that the input message is deserialized  
+        /// Decrypted string should match yay!
+        /// </summary>
+        [Test]
+        public void TestYayDecryptionBasic ()
+        {
+            PubnubCrypto pc = new PubnubCrypto("enigma");
+            string strMessage= "q/xJqqN6qbiZMXYmiQC1Fw==";
+            //decrypt
+            string dec = pc.EncryptOrDecrypt(false, strMessage);
+            //deserialize again
+            Assert.AreEqual("yay!", dec);
+        }
+        /// <summary>
+        /// Tests the yay encryption.
+        /// The output is not serialized
+        /// Encrypted string should match q/xJqqN6qbiZMXYmiQC1Fw==
+        /// </summary>
+        [Test]
+        public void TestYayEncryptionBasic ()
+        {
+            PubnubCrypto pc = new PubnubCrypto("enigma");
+            //deserialized string
+            string strMessage= "yay!";
+            //Encrypt
+            string enc = pc.EncryptOrDecrypt(true, strMessage);
+            Assert.AreEqual("q/xJqqN6qbiZMXYmiQC1Fw==", enc);
+        }
         /// <summary>
         /// Tests the yay decryption.
         /// Assumes that the input message is not deserialized  
@@ -326,25 +359,80 @@ namespace PubNubTest
             Assert.AreEqual("{\"foo\":{\"bar\":\"foobar\"}}", dec);
         }
 
+        /// <summary>
+        /// Tests the null encryption.
+        /// The input is serialized
+        /// </summary>
+        [Test]
+        public void TestNullEncryption ()
+        {
+            PubnubCrypto pc = new PubnubCrypto("enigma");
+            //serialized string
+            string strMessage= null;
+            //encrypt
+            string enc = pc.EncryptOrDecrypt(true, strMessage);
+
+            Assert.AreEqual("", enc);
+        }
+
+        /// <summary>
+        /// Tests the null decryption.
+        /// Assumes that the input message is  deserialized  
+        /// </summary>        
+        [Test]
+        public void TestNullDecryption()
+        {
+            PubnubCrypto pc = new PubnubCrypto("enigma");
+            //deserialized string
+            string strMessage= null;
+            //decrypt
+            string dec = pc.EncryptOrDecrypt(false, strMessage);
+
+            Assert.AreEqual("", dec);
+        }
+        /// <summary>
+        /// Tests the unicode chars encryption.
+        /// The input is not serialized
+        /// </summary>
         [Test]
         public void TestUnicodeCharsEncryption ()
         {
+            /*string unicodeString = "漢語";
+
+            Console.WriteLine( unicodeString );
+
+            string encoded = EncodeNonAsciiCharacters(unicodeString);
+            Console.WriteLine( encoded );
+
+            string decoded = DecodeEncodedNonAsciiCharacters( encoded );
+            Console.WriteLine( decoded );*/
+
             PubnubCrypto pc = new PubnubCrypto("enigma");
-            string strMessage= "\u6f22\u8a9e";
+            string strMessage= "漢語";
 
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            strMessage= js.Serialize(strMessage);
+            Console.WriteLine(strMessage);
             string enc = pc.EncryptOrDecrypt(true, strMessage);
-
             Assert.AreEqual("+BY5/miAA8aeuhVl4d13Kg==", enc);
         }
+       /// <summary>
+        /// Tests the unicode decryption.
+        /// Assumes that the input message is  deserialized  
+        /// Decrypted and Deserialized string should match the unicode chars       
+        /// </summary>
         [Test]
         public void TestUnicodeCharsDecryption()
         {
             PubnubCrypto pc = new PubnubCrypto("enigma");
             string strMessage= "+BY5/miAA8aeuhVl4d13Kg==";
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            //decrypt
+            string dec = pc.EncryptOrDecrypt(false, strMessage);
+            //deserialize
+            strMessage= js.Deserialize<string>(dec);
 
-            string enc = pc.EncryptOrDecrypt(false, strMessage);
-
-            Assert.AreEqual("\u6f22\u8a9e", enc);
+            Assert.AreEqual("漢語", strMessage);
         }
 
         [Test]
@@ -390,6 +478,30 @@ namespace PubNubTest
             string strCipher = pc.GetEncryptionKey();
 
             Assert.AreEqual("67a4f45f0d1d9bc606486fc42dc49416", strCipher);
+        }
+        
+        static string EncodeNonAsciiCharacters( string value ) {
+            StringBuilder sb = new StringBuilder();
+            foreach( char c in value ) {
+                if( c > 127 ) {
+                    // This character is too big for ASCII
+                    string encodedValue = "\\u" + ((int) c).ToString( "x4" );
+                    sb.Append( encodedValue );
+                }
+                else {
+                    sb.Append( c );
+                }
+            }
+            return sb.ToString();
+        }
+
+        static string DecodeEncodedNonAsciiCharacters( string value ) {
+            return Regex.Replace(
+                value,
+                @"\\u(?<Value>[a-zA-Z0-9]{4})",
+                m => {
+                    return ((char) int.Parse( m.Groups["Value"].Value, NumberStyles.HexNumber )).ToString();
+                } );
         }
     }
 

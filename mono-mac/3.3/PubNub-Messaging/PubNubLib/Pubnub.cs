@@ -271,14 +271,14 @@ namespace PubNubLib
                 // Sign Message
                 signature = md5(string_to_sign.ToString());
             }
-            string message_org = message.ToString();
+            //string message_org = message.ToString();
             if (this.CIPHER_KEY.Length > 0)
             {
                 PubnubCrypto aes = new PubnubCrypto(this.CIPHER_KEY);
 				//serialize the message
-				message = ser.Serialize(message.ToString());
+				message = ser.Serialize(message);
 				//encrypt and encode
-                message = aes.encrypt(message_org);
+                message = aes.encrypt(message.ToString());
             }
 
             // Build URL
@@ -290,7 +290,7 @@ namespace PubNubLib
             url.Add(channel);
             url.Add("0");
             //url.Add(SerializeToJsonString(message));
-			url.Add(ser.Serialize(message.ToString()));
+			url.Add(ser.Serialize(message));
 
             return _request(url, ResponseType.Publish);
         }
@@ -1262,7 +1262,10 @@ namespace PubNubLib
                 ICryptoTransform crypto = aesEncryption.CreateEncryptor();
 
                 //plainStr = ser.Serialize(plainStr);
-                byte[] plainText = ASCIIEncoding.ASCII.GetBytes(plainStr);
+                byte[] plainText = Encoding.ASCII.GetBytes(plainStr);
+				//byte[] plainText = Encoding.Unicode.GetBytes(plainStr);
+				//byte[] plainText = Encoding.GetEncoding(1252).GetBytes(plainStr);
+
                 //encrypt
                 byte[] cipherText = crypto.TransformFinalBlock(plainText, 0, plainText.Length);
                 return Convert.ToBase64String(cipherText);
