@@ -1,8 +1,8 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="PubNubTest/EncryptionTests.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="PubNubLib/Pubnub.cs">
     <Files>
-      <File FileName="PubNubLib/Pubnub.cs" Line="1277" Column="1" />
+      <File FileName="PubNubLib/Pubnub.cs" Line="1267" Column="17" />
       <File FileName="PubNubTest/EncryptionTests.cs" Line="419" Column="10" />
     </Files>
     <Pads>
@@ -10,13 +10,13 @@
         <State expanded="True">
           <Node name="PubNubLib" expanded="True">
             <Node name="References" expanded="True" />
+            <Node name="Pubnub.cs" selected="True" />
           </Node>
           <Node name="PubNub-Messaging" expanded="True">
             <Node name="References" expanded="True" />
           </Node>
           <Node name="PubNubTest" expanded="True">
             <Node name="References" expanded="True" />
-            <Node name="EncryptionTests.cs" selected="True" />
           </Node>
         </State>
       </Pad>

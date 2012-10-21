@@ -173,6 +173,25 @@ namespace PubNubTest
 
             Assert.AreEqual(true, pubnub.publish(channel, message));
         }
+
+        [Test]
+        public void NullShouldBeTreatedAsEmpty()
+        {
+            Pubnub pubnub = new Pubnub(
+                null,
+                "demo",
+                null,
+                null,
+                false
+            );
+            string channel = "my/channel";
+            string message = "Pubnub API Usage Example";
+
+            pubnub.PropertyChanged += new PropertyChangedEventHandler(Pubnub_PropertyChanged);
+
+            Assert.AreEqual(false, pubnub.publish(channel, message));
+        }
+
     }
 }
 

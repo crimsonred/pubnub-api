@@ -435,25 +435,69 @@ namespace PubNubTest
 
             Assert.AreEqual("漢語", strMessage);
         }
-
+        /// <summary>
+        /// Tests the german chars decryption.
+        /// Assumes that the input message is  deserialized  
+        /// Decrypted and Deserialized string should match the unicode chars  
+        /// </summary>
         [Test]
-        public void  PublishAndHistory ()
+        public void TestGermanCharsDecryption()
         {
+            PubnubCrypto pc = new PubnubCrypto("enigma");
+            string strMessage= "stpgsG1DZZxb44J7mFNSzg==";
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            //decrypt
+            string dec = pc.EncryptOrDecrypt(false, strMessage);
+            //deserialize
+            strMessage= js.Deserialize<string>(dec);
+
+            Assert.AreEqual("ÜÖ", strMessage);
+        }
+       /// <summary>
+        /// Tests the german encryption.
+        /// The input is not serialized
+        /// </summary>
+        [Test]
+        public void TestGermanCharsEncryption ()
+        {
+            PubnubCrypto pc = new PubnubCrypto("enigma");
+            string strMessage= "ÜÖ";
+
+            JavaScriptSerializer js = new JavaScriptSerializer();
+            strMessage= js.Serialize(strMessage);
+            Console.WriteLine(strMessage);
+            string enc = pc.EncryptOrDecrypt(true, strMessage);
+            Console.WriteLine(enc);
+            Assert.AreEqual("stpgsG1DZZxb44J7mFNSzg==", enc);
+        }
+
+        /// <summary>
+        /// Test for Publish the and history.
+        /// </summary>
+        [Test]
+        public void PublishAndHistory ()
+        {
+            //demo init
             Pubnub pubnub = new Pubnub(
                     "demo",
                     "demo",
                     "",
                     "",
                     false);
+            //cipher key
             pubnub.CIPHER_KEY = "enigma";
+            //channel
             string channel = "hello_world";
-
+            //string message
             string strMsg = "yay!";
+            //publish the message
             pubnub.publish(channel, strMsg);
 
             bool deliveryStatus = false;
 
             string strResponse = "empty";
+            //create an event handler for the proertyChanged event. 
+            //This will be called when we get a response from the server
             pubnub.PropertyChanged += delegate(object sender, PropertyChangedEventArgs e)
             {
                 if (e.PropertyName == "DetailedHistory")
@@ -464,13 +508,18 @@ namespace PubNubTest
                     deliveryStatus = true;
                 }
             };
-
+            
             pubnub.detailedHistory(channel, 1);
+            //wait till the deliveryStatus is true. 
+            //the variable is modified on the PropertyChanged event
             while (!deliveryStatus) ;
 
             Assert.AreEqual(strMsg, strResponse);
         }
-
+        
+        /// <summary>
+        /// Tests the cipher.
+        /// </summary>
         [Test]
         public void  TestCipher ()
         {

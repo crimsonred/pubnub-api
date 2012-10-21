@@ -1261,7 +1261,8 @@ namespace PubNubLib
             {
                 ICryptoTransform crypto = aesEncryption.CreateEncryptor();
 
-                //plainStr = ser.Serialize(plainStr);
+                plainStr = EncodeNonAsciiCharacters(plainStr);
+				//Console.WriteLine(plainStr);
                 byte[] plainText = Encoding.ASCII.GetBytes(plainStr);
                 //byte[] plainText = Encoding.Unicode.GetBytes(plainStr);
                 //byte[] plainText = Encoding.GetEncoding(1252).GetBytes(plainStr);
@@ -1302,6 +1303,31 @@ namespace PubNubLib
             byte[] data = Encoding.Default.GetBytes(cipher_key);
             return obj.ComputeHash(data);
         }
+		/// <summary>
+		/// Encodes the non ASCII characters.
+		/// </summary>
+		/// <returns>
+		/// The non ASCII characters.
+		/// </returns>
+		/// <param name='value'>
+		/// Value.
+		/// </param>
+		private string EncodeNonAsciiCharacters( string value ) 
+		{
+            StringBuilder sb = new StringBuilder();
+            foreach( char c in value ) {
+                if( c > 127 ) {
+                    // This character is too big for ASCII
+                    string encodedValue = "\\u" + ((int) c).ToString( "x4" );
+                    sb.Append( encodedValue );
+                }
+                else {
+                    sb.Append( c );
+                }
+            }
+            return sb.ToString();
+        }
+
     }
 }
 
